@@ -94,14 +94,6 @@ Ali še krajše: samo povleci MP3 v pogovor. Skill se sproži sam.
 - **fotke table**: rešijo mesta, kjer je profesor samo pokazal »tole tukaj«,
 - nekaj **ključnih izrazov** predmeta, da jih prepis pravilno zapiše.
 
-### Koliko traja?
-
-| Posnetek | Prepis (prenosnik, CPU) | Zapiski + PDF |
-| -------- | ----------------------- | ------------- |
-| 45 min   | ~8–15 min               | nekaj minut   |
-| 90 min   | ~15–30 min              | nekaj minut   |
-| 180 min  | ~40–60 min              | nekoliko dlje |
-
 Prepis teče v ozadju, Claude te sproti obvešča o napredku.
 
 ### Kaj podpira
@@ -134,7 +126,7 @@ Matematika1_05_Odvodi.pdf  ← to natisneš
 | Veliko napačnih izrazov   | Claudu povej ime predmeta in nekaj ključnih izrazov ali mu daj prosojnice.                                        |
 | Formule v PDF-ju so rdeče | Claude to sam zazna in popravi. Če ostane, reci »popravi formule in ponovno zgradi PDF«.                          |
 | PDF se ne ustvari         | Potrebuješ Edge ali Chrome. Odpri `.html` datoteko ob PDF-ju in jo natisni v PDF ročno (Ctrl+P).                  |
-| Nalaganje skilla ne uspe  | Uporabi `mp3-to-pdf.skill` s povezave zgoraj (ne GitHubovega _Code → Download ZIP_). |
+| Nalaganje skilla ne uspe  | Uporabi `mp3-to-pdf.skill` s povezave zgoraj (ne GitHubovega _Code → Download ZIP_).                              |
 | Skill se ne sproži        | Napiši izrecno: »uporabi skill mp3-to-pdf«.                                                                       |
 
 ## Kaj je v mapi
