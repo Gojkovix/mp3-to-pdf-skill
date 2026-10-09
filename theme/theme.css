@@ -1,0 +1,96 @@
+/* predavanje-v-pdf – print theme. ACCENT is replaced by the frontmatter accent colour. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  --accent: ACCENT; --ink: #1b1f24; --muted: #6b7280; --rule: #d7dce2;
+  --def: ACCENT; --formula: #2e7d4f; --thm: #6b4fa0; --ex: #3b6e8f; --task: #1b1f24;
+  --warn: #b7791f; --exam: #c0392b; --unclear: #8a8f98; --idea: #0f766e;
+}
+@page {
+  size: A4; margin: 18mm 16mm 18mm 20mm;
+  @bottom-left  { font: 500 8pt Inter, sans-serif; color: #6b7280; }
+  @bottom-right { content: counter(page); font: 600 8.5pt Inter, sans-serif; color: ACCENT; }
+}
+@page :first { @bottom-left { content: none; } @bottom-right { content: none; } }
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; color: var(--ink); font: 10.5pt/1.55 "Source Serif 4", Georgia, serif; hyphens: auto; }
+p { margin: 0 0 .55em; orphans: 3; widows: 3; }
+strong { font-weight: 600; }
+a { color: var(--accent); }
+
+/* cover */
+.cover { height: 257mm; display: flex; flex-direction: column; break-after: page; padding-top: 22mm; }
+.cover-course { font: 600 11pt Inter, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.cover-num { font: 700 72pt/1 Inter, sans-serif; color: var(--accent); margin-top: 10mm; }
+.cover-num:empty { display: none; }
+.cover-title { font: 700 28pt/1.15 Inter, sans-serif; margin: 6mm 0 4mm; max-width: 150mm; }
+.cover-meta { font: 400 9.5pt/1.6 Inter, sans-serif; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 4mm; }
+.toc { margin-top: auto; border-top: 1px solid var(--rule); padding-top: 5mm; }
+.toc-head { font: 600 9pt Inter, sans-serif; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 2mm; }
+.toc ul { list-style: none; margin: 0; padding: 0; font: 9.5pt/1.7 Inter, sans-serif; }
+.toc li { break-inside: avoid; }
+.toc li.l1 { font-weight: 600; margin-top: 1.5mm; }
+.toc li.l2 { padding-left: 7mm; color: #374151; }
+.tnum { display: inline-block; min-width: 7mm; color: var(--accent); }
+
+/* headings */
+h1, h2, h3 { font-family: Inter, sans-serif; break-after: avoid; line-height: 1.25; }
+main > h1, main > .keep > h1, .sheet > h1, .solutions > h1 { break-before: page; }
+h1 { font-size: 18pt; font-weight: 700; margin: 0 0 5mm; padding-bottom: 2mm; border-bottom: 2px solid var(--accent); }
+h2 { font-size: 13pt; font-weight: 600; margin: 7mm 0 3mm; color: var(--accent); }
+h3 { font-size: 11pt; font-weight: 600; margin: 5mm 0 2mm; }
+.hnum { color: var(--accent); margin-right: 3mm; }
+h2 .hnum { font-weight: 500; }
+.keep { break-inside: avoid; }
+
+/* timestamp chips – jump back into the recording */
+.ts { font: 500 7.5pt Inter, sans-serif; color: var(--muted); border: 1px solid var(--rule); border-radius: 3px;
+      padding: 0 1.2mm; margin-left: 1.5mm; vertical-align: 1.5px; white-space: nowrap; }
+h1 .ts, h2 .ts { font-size: 7.5pt; font-weight: 500; }
+
+/* boxes */
+.bx { break-inside: avoid; margin: 3.5mm 0; border-left: 3px solid var(--c, var(--accent));
+      background: color-mix(in srgb, var(--c, var(--accent)) 6%, white); border-radius: 0 4px 4px 0; padding: 2.5mm 4mm 2mm; }
+.bx-head { font: 600 8.5pt Inter, sans-serif; margin-bottom: 1.2mm; display: flex; gap: 2.5mm; align-items: baseline; }
+.bx-label { color: var(--c, var(--accent)); text-transform: uppercase; letter-spacing: .06em; }
+.bx-title { color: var(--ink); font-size: 9.5pt; }
+.bx-body > :last-child { margin-bottom: 0; }
+.bx-def { --c: var(--def); }
+.bx-formula { --c: var(--formula); }
+.bx-formula .math.display { font-size: 1.12em; }
+.bx-thm, .bx-rule { --c: var(--thm); }
+.bx-ex { --c: var(--ex); background: white; border: 1px solid var(--rule); border-left: 3px solid var(--ex); }
+.bx-task { --c: var(--task); background: white; border: 1.5px solid var(--task); border-radius: 4px; }
+.bx-sol { --c: var(--formula); background: #f6faf7; break-inside: auto; }
+.bx-idea { --c: var(--idea); }
+.bx-warn { --c: var(--warn); }
+.bx-exam { --c: var(--exam); background: color-mix(in srgb, var(--exam) 8%, white); }
+.bx-unclear { --c: var(--unclear); background: #f5f5f6; font-size: 9.5pt; }
+.bx-summary { --c: var(--accent); }
+.bx-proof { --c: var(--muted); background: white; }
+
+.space { border: 1px dashed #c4cad2; border-radius: 4px; margin: -1.5mm 0 4mm; position: relative;
+         background-image: repeating-linear-gradient(transparent 0 7.5mm, #edf0f3 7.5mm 7.8mm); }
+.space span { position: absolute; right: 2mm; bottom: 1mm; font: 7pt Inter, sans-serif; color: #9aa2ad; }
+
+/* math, tables, code, figures */
+.math.display { margin: 2.5mm 0; overflow-x: auto; }
+.math-error { color: #c0392b; background: #fdecea; outline: 1px solid #c0392b; }
+table { border-collapse: collapse; margin: 3mm 0; font: 9pt/1.4 Inter, sans-serif; break-inside: avoid; }
+th, td { border-bottom: 1px solid var(--rule); padding: 1.3mm 3mm; text-align: left; vertical-align: top; }
+th { font-weight: 600; border-bottom: 1.5px solid var(--ink); }
+code { font: 8.8pt "Cascadia Code", Consolas, monospace; background: #f1f3f5; padding: 0 1mm; border-radius: 2px; }
+pre { background: #f6f8fa; border: 1px solid var(--rule); border-radius: 4px; padding: 3mm; break-inside: avoid; white-space: pre-wrap; }
+pre code { background: none; padding: 0; }
+figure { margin: 4mm 0; text-align: center; break-inside: avoid; }
+figure svg { max-width: 100%; height: auto; }
+figcaption { font: 8.5pt Inter, sans-serif; color: var(--muted); margin-top: 1.5mm; }
+ul, ol { margin: 0 0 .6em; padding-left: 6mm; }
+li { margin: .15em 0; }
+blockquote { margin: 3mm 0; padding-left: 4mm; border-left: 2px solid var(--rule); color: #374151; font-style: italic; }
+
+/* formula sheet appendix */
+.sheet-grid { columns: 2; column-gap: 6mm; }
+.sheet-grid .bx { margin: 0 0 3mm; font-size: 9.5pt; }

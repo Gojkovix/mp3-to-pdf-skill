@@ -1,0 +1,15 @@
+# installed by scripts/setup.py
+vendor/
+node_modules/
+__pycache__/
+*.pyc
+
+# build/transcription outputs from testing
+*_work/
+examples/*.html
+*.mp3
+*.m4a
+*.wav
+
+.DS_Store
+Thumbs.db
