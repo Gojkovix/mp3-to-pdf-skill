@@ -3,8 +3,9 @@
 
 usage:  python setup.py
 
-Checks/installs: faster-whisper, markdown-it-py, mdit-py-plugins (pip), KaTeX (npm, vendored
-into ../vendor so PDFs render offline), and an Edge/Chrome browser for PDF printing.
+Checks/installs: faster-whisper, markdown-it-py, mdit-py-plugins (pip), KaTeX (npm, into
+~/.cache/mp3-to-pdf so PDFs render offline; kept outside the skill folder because an uploaded
+skill's folder is replaced on every sync), and an Edge/Chrome browser for PDF printing.
 """
 import importlib, pathlib, shutil, subprocess, sys
 
@@ -20,13 +21,14 @@ for mod, pkg in [("faster_whisper", "faster-whisper"), ("markdown_it", "markdown
         r = subprocess.run([sys.executable, "-m", "pip", "install", "-q", pkg])
         ok &= r.returncode == 0
 
-kdir = ROOT / "vendor" / "node_modules" / "katex"
+VENDOR = pathlib.Path.home() / ".cache" / "mp3-to-pdf"
+kdir = VENDOR / "node_modules" / "katex"
 if kdir.exists():
     print("ok   katex (vendored)")
 elif shutil.which("npm"):
     print("inst katex …")
-    (ROOT / "vendor").mkdir(exist_ok=True)
-    r = subprocess.run("npm install --silent --no-audit --no-fund katex@0.16.11", shell=True, cwd=ROOT / "vendor")
+    VENDOR.mkdir(parents=True, exist_ok=True)
+    r = subprocess.run("npm install --silent --no-audit --no-fund katex@0.16.11", shell=True, cwd=VENDOR)
     print("ok   katex" if kdir.exists() else "warn katex install failed – build.py will use the CDN")
 else:
     print("warn npm missing – build.py will load KaTeX from the CDN (needs internet)")

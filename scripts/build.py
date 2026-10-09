@@ -134,7 +134,7 @@ def main():
     footer_left = f'{meta.get("course", "")} · {meta.get("title", "")}'.strip(" ·").replace('"', "'")
     css += f'\n@page {{ @bottom-left {{ content: "{footer_left}"; }} }}\n'
 
-    kdir = ROOT / "vendor" / "node_modules" / "katex" / "dist"
+    kdir = pathlib.Path.home() / ".cache" / "mp3-to-pdf" / "node_modules" / "katex" / "dist"
     if kdir.exists():
         kcss = (kdir / "katex.min.css").read_text(encoding="utf-8").replace("url(fonts/", f"url({kdir.as_uri()}/fonts/")
         katex_tags = f"<style>{kcss}</style>", f"<script>{(kdir / 'katex.min.js').read_text(encoding='utf-8')}</script>"

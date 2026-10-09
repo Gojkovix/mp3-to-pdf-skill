@@ -37,57 +37,42 @@ Navaden prepis 90-minutnega predavanja ima okoli 13.000 besed ponavljanja, »ne?
 
 ---
 
-## Namestitev (enkrat, ~10 minut)
+## Namestitev (enkrat, ~5 minut)
 
 ### Kaj potrebuješ
 
-|                                                                                           | Zakaj                           | Kje                                                                                      |
-| ----------------------------------------------------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Claude Code** (aplikacija Claude za namizje → zavihek _Code_, ali `claude` v terminalu) | poganja skill                   | [claude.com/download](https://claude.com/download)                                       |
-| **Python 3.10+**                                                                          | prepis in izdelava PDF-ja       | [python.org](https://www.python.org/downloads/) (pri namestitvi obkljukaj _Add to PATH_) |
-| **Edge ali Chrome**                                                                       | tiskanje v PDF                  | na Windows je Edge že nameščen                                                           |
-| Node.js _(neobvezno)_                                                                     | formule delujejo brez interneta | [nodejs.org](https://nodejs.org)                                                         |
+|                                                                       | Zakaj                     | Kje                                                                                      |
+| --------------------------------------------------------------------- | ------------------------- | ---------------------------------------------------------------------------------------- |
+| **Aplikacija Claude za namizje** (zavihek _Code_) ali **Claude Code** | poganja skill             | [claude.com/download](https://claude.com/download)                                       |
+| **Python 3.10+**                                                      | prepis in izdelava PDF-ja | [python.org](https://www.python.org/downloads/) (pri namestitvi obkljukaj _Add to PATH_) |
+| **Edge ali Chrome**                                                   | tiskanje v PDF            | na Windows je Edge že nameščen                                                           |
 
-> **Pozor:** skill potrebuje Claude **Code** (namizna aplikacija ali terminal), ker poganja Python na tvojem računalniku. Na navadnem claude.ai v brskalniku ne deluje.
+> **Pozor:** skill uporabljaj v zavihku **Code** (ali v Claude Code v terminalu), ker prepis teče na tvojem računalniku. V navadnem klepetu na claude.ai v brskalniku ne deluje.
 
 ### 1. Prenesi skill
 
-**Z gitom (priporočeno, posodobitve dobiš z `git pull`):**
+Prenesi **[mp3-to-pdf.zip](https://github.com/<uporabnik>/mp3-to-pdf/releases/latest/download/mp3-to-pdf.zip)**. ZIP-a ne razširjaj.
+
+### 2. Naloži ga v Claude
+
+V aplikaciji Claude odpri **Nastavitve → Capabilities → Skills** (v novejših verzijah **Customize → Skills**), klikni **Upload skill** in izberi preneseni `mp3-to-pdf.zip`. Skill se prikaže na seznamu, preveri samo, da je vklopljen.
+
+To je vse. Ob prvi uporabi Claude sam namesti, kar še manjka (Python knjižnice, KaTeX za formule), in prenese govorni model (~1,6 GB, samo enkrat).
+
+### Posodobitev
+
+Prenesi nov `mp3-to-pdf.zip` s iste povezave, v Skills izbriši staro verzijo in naloži novo.
+
+<details>
+<summary>Namestitev z gitom (za razvijalce)</summary>
 
 ```bash
 git clone https://github.com/<uporabnik>/mp3-to-pdf.git ~/.claude/skills/mp3-to-pdf
 ```
 
-Na Windows v PowerShellu namesto `~` uporabi `$env:USERPROFILE`.
+Na Windows v PowerShellu namesto `~` uporabi `$env:USERPROFILE`. Posodobitev: `git pull` v tej mapi. Tak skill vidi samo Claude Code na tem računalniku.
 
-**Brez gita:** na GitHubu klikni _Code → Download ZIP_, razširi ga in mapo preimenuj v `mp3-to-pdf`. Nato jo premakni sem:
-
-- **Windows:** `C:\Users\<tvoje-ime>\.claude\skills\mp3-to-pdf`
-- **macOS / Linux:** `~/.claude/skills/mp3-to-pdf`
-
-Mapa `.claude` je skrita. V Raziskovalcu vklopi _Pogled → Skriti elementi_ ali v naslovno vrstico prilepi `%USERPROFILE%\.claude\skills`. Če mapa `skills` ne obstaja, jo ustvari. Datoteka `SKILL.md` mora biti neposredno v mapi `mp3-to-pdf`, ne v podmapi.
-
-### 2. Namesti knjižnice
-
-V terminalu (PowerShell na Windows, Terminal na Macu):
-
-```bash
-python ~/.claude/skills/mp3-to-pdf/scripts/setup.py
-```
-
-Na Windows v PowerShellu namesto `~` uporabi `$env:USERPROFILE`. Na Macu uporabi `python3`. Skripta sama namesti, kar manjka, in na koncu izpiše `setup ok`.
-
-Ob **prvem prepisu** se samodejno prenese govorni model (~1,6 GB, samo enkrat).
-
-### 3. Preveri
-
-Odpri Claude Code in napiši:
-
-```
-Kateri skilli so ti na voljo?
-```
-
-Na seznamu mora biti `mp3-to-pdf`.
+</details>
 
 ---
 
@@ -147,6 +132,7 @@ Matematika1_05_Odvodi.pdf  ← to natisneš
 | Veliko napačnih izrazov   | Claudu povej ime predmeta in nekaj ključnih izrazov ali mu daj prosojnice.                                        |
 | Formule v PDF-ju so rdeče | Claude to sam zazna in popravi. Če ostane, reci »popravi formule in ponovno zgradi PDF«.                          |
 | PDF se ne ustvari         | Potrebuješ Edge ali Chrome. Odpri `.html` datoteko ob PDF-ju in jo natisni v PDF ročno (Ctrl+P).                  |
+| Nalaganje skilla ne uspe  | Uporabi `mp3-to-pdf.zip` s povezave zgoraj (ne GitHubovega _Code → Download ZIP_) in ga ne razširjaj. |
 | Skill se ne sproži        | Napiši izrecno: »uporabi skill mp3-to-pdf«.                                                                       |
 
 ## Kaj je v mapi
