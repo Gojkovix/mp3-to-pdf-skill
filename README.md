@@ -170,4 +170,4 @@ mp3-to-pdf/
 
 ---
 
-<sub>Prepis: [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (OpenAI Whisper large-v3-turbo) · Formule: [KaTeX](https://katex.org) · Zapiski: Claude. Zapiski so pripomoček za učenje: preveri označena nejasna mesta in jih ne jemlji kot nadomestilo za predavanja.</sub>
+<sub>Prepis: [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (OpenAI Whisper large-v3-turbo) · Formule: [KaTeX](https://katex.org) · Zapiski: Claude.</sub>
