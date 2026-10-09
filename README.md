@@ -137,6 +137,7 @@ Calculus1_05_Derivatives.pdf ← print this
 mp3-to-pdf/
 ├── SKILL.md                    instructions for Claude (how to turn speech into notes)
 ├── README.md                   this file
+├── LICENSE                     MIT license
 ├── scripts/
 │   ├── setup.py                installation and health check (Windows, macOS, Linux)
 │   ├── _env.py                 shared helpers (private Python environment, browser lookup)
@@ -154,3 +155,7 @@ Want a different colour for your course? Tell Claude "use green" (the `accent` f
 ---
 
 <sub>Transcription: [faster-whisper](https://github.com/SYSTRAN/faster-whisper) (OpenAI Whisper large-v3-turbo) · Formulas: [KaTeX](https://katex.org) · Notes: Claude.</sub>
+
+## License
+
+[MIT](LICENSE) © 2026 Lan Gojkovič
