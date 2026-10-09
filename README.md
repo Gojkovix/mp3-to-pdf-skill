@@ -12,14 +12,14 @@ Claudu pošlješ MP3 s predavanja, nazaj dobiš urejen PDF za tiskanje: formule 
 
 Navaden prepis 90-minutnega predavanja ima okoli 13.000 besed ponavljanja, »ne?« in »torej«, najpomembnejšega dela, tistega na tabli, pa v njem sploh ni. Ta skill zato ne prepisuje, ampak **rekonstruira predavanje**, kot bi ga profesor napisal:
 
-| Navaden prepis | mp3-to-pdf |
-|---|---|
-| »ef od gje od iks črtica je ef črtica …« | $(f\circ g)'(x) = f'(g(x))\cdot g'(x)$ v zelenem okvirju *Formula* |
-| zgled napol izpeljan, ker je bil preostanek na tabli | zgled izpeljan do konca, vsak korak z imenom pravila |
-| »za domačo nalogo pa …« izgine med ostalim besedilom | okvir *Naloga* + prostor za reševanje + rešitev |
-| »to bo na izpitu« se izgubi | rdeč okvir **Za izpit** s časovno oznako |
-| napake prepisa (»lagranž«, »ajgen«) | popravljeni strokovni izrazi |
-| nejasna mesta so tiho napačna | siv okvir *Nejasno v posnetku* + čas, da veš, kaj preveriti |
+| Navaden prepis                                       | mp3-to-pdf                                                         |
+| ---------------------------------------------------- | ------------------------------------------------------------------ |
+| »ef od gje od iks črtica je ef črtica …«             | $(f\circ g)'(x) = f'(g(x))\cdot g'(x)$ v zelenem okvirju _Formula_ |
+| zgled napol izpeljan, ker je bil preostanek na tabli | zgled izpeljan do konca, vsak korak z imenom pravila               |
+| »za domačo nalogo pa …« izgine med ostalim besedilom | okvir _Naloga_ + prostor za reševanje + rešitev                    |
+| »to bo na izpitu« se izgubi                          | rdeč okvir **Za izpit** s časovno oznako                           |
+| napake prepisa (»lagranž«, »ajgen«)                  | popravljeni strokovni izrazi                                       |
+| nejasna mesta so tiho napačna                        | siv okvir _Nejasno v posnetku_ + čas, da veš, kaj preveriti        |
 
 ## Kaj dobiš v PDF-ju
 
@@ -41,12 +41,12 @@ Navaden prepis 90-minutnega predavanja ima okoli 13.000 besed ponavljanja, »ne?
 
 ### Kaj potrebuješ
 
-| | Zakaj | Kje |
-|---|---|---|
-| **Claude Code** (aplikacija Claude za namizje → zavihek *Code*, ali `claude` v terminalu) | poganja skill | [claude.com/download](https://claude.com/download) |
-| **Python 3.10+** | prepis in izdelava PDF-ja | [python.org](https://www.python.org/downloads/) (pri namestitvi obkljukaj *Add to PATH*) |
-| **Edge ali Chrome** | tiskanje v PDF | na Windows je Edge že nameščen |
-| Node.js *(neobvezno)* | formule delujejo brez interneta | [nodejs.org](https://nodejs.org) |
+|                                                                                           | Zakaj                           | Kje                                                                                      |
+| ----------------------------------------------------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Claude Code** (aplikacija Claude za namizje → zavihek _Code_, ali `claude` v terminalu) | poganja skill                   | [claude.com/download](https://claude.com/download)                                       |
+| **Python 3.10+**                                                                          | prepis in izdelava PDF-ja       | [python.org](https://www.python.org/downloads/) (pri namestitvi obkljukaj _Add to PATH_) |
+| **Edge ali Chrome**                                                                       | tiskanje v PDF                  | na Windows je Edge že nameščen                                                           |
+| Node.js _(neobvezno)_                                                                     | formule delujejo brez interneta | [nodejs.org](https://nodejs.org)                                                         |
 
 > ⚠️ Skill potrebuje Claude **Code** (namizna aplikacija ali terminal), ker poganja Python na tvojem računalniku. Na navadnem claude.ai v brskalniku ne deluje.
 
@@ -60,12 +60,12 @@ git clone https://github.com/<uporabnik>/mp3-to-pdf.git ~/.claude/skills/mp3-to-
 
 Na Windows v PowerShellu namesto `~` uporabi `$env:USERPROFILE`.
 
-**Brez gita:** na GitHubu klikni *Code → Download ZIP*, razširi ga in mapo preimenuj v `mp3-to-pdf`. Nato jo premakni sem:
+**Brez gita:** na GitHubu klikni _Code → Download ZIP_, razširi ga in mapo preimenuj v `mp3-to-pdf`. Nato jo premakni sem:
 
 - **Windows:** `C:\Users\<tvoje-ime>\.claude\skills\mp3-to-pdf`
 - **macOS / Linux:** `~/.claude/skills/mp3-to-pdf`
 
-Mapa `.claude` je skrita. V Raziskovalcu vklopi *Pogled → Skriti elementi* ali v naslovno vrstico prilepi `%USERPROFILE%\.claude\skills`. Če mapa `skills` ne obstaja, jo ustvari. Datoteka `SKILL.md` mora biti neposredno v mapi `mp3-to-pdf`, ne v podmapi.
+Mapa `.claude` je skrita. V Raziskovalcu vklopi _Pogled → Skriti elementi_ ali v naslovno vrstico prilepi `%USERPROFILE%\.claude\skills`. Če mapa `skills` ne obstaja, jo ustvari. Datoteka `SKILL.md` mora biti neposredno v mapi `mp3-to-pdf`, ne v podmapi.
 
 ### 2. Namesti knjižnice
 
@@ -102,6 +102,7 @@ Tukaj je posnetek predavanja Matematika 1, tema odvodi: C:\Users\jaz\Downloads\m
 Ali še krajše: samo povleci MP3 v pogovor. Skill se sproži sam.
 
 **Za še boljši rezultat** dodaj zraven:
+
 - 📑 **prosojnice** (PDF): formule in izrazi so potem natančni,
 - 📸 **fotke table**: rešijo mesta, kjer je profesor samo pokazal »tole tukaj«,
 - 🏷️ nekaj **ključnih izrazov** predmeta, da jih prepis pravilno zapiše.
@@ -109,9 +110,9 @@ Ali še krajše: samo povleci MP3 v pogovor. Skill se sproži sam.
 ### Koliko traja?
 
 | Posnetek | Prepis (prenosnik, CPU) | Zapiski + PDF |
-|---|---|---|
-| 45 min | ~8–15 min | nekaj minut |
-| 90 min | ~15–30 min | nekaj minut |
+| -------- | ----------------------- | ------------- |
+| 45 min   | ~8–15 min               | nekaj minut   |
+| 90 min   | ~15–30 min              | nekaj minut   |
 
 Prepis teče v ozadju, Claude te sproti obvešča o napredku.
 
@@ -136,23 +137,16 @@ Matematika1_05_Odvodi.pdf  ← 🎯 to natisneš
 
 ---
 
-## Nasveti za dober posnetek
-
-- 🎙️ **Telefon čim bližje profesorju**, prva vrsta ali na katedri. Razdalja je največji dejavnik kakovosti.
-- 🔇 Brez šumenja papirja ali tipkanja ob mikrofonu.
-- ✈️ Telefon v letalskem načinu: brez motenj in brez prekinitev snemanja.
-- ✅ Snemaj samo, če profesor to dovoli.
-
 ## Pogoste težave
 
-| Težava | Rešitev |
-|---|---|
-| `python` ni prepoznan | Python ni v PATH. Ponovno namesti in obkljukaj *Add to PATH*, ali uporabi `py`. |
-| Prepis je zelo počasen | Normalno na starejših računalnikih. Pusti, da teče v ozadju. Za hitrejši, a slabši prepis: »uporabi model small«. |
-| Veliko napačnih izrazov | Claudu povej ime predmeta in nekaj ključnih izrazov ali mu daj prosojnice. |
-| Formule v PDF-ju so rdeče | Claude to sam zazna in popravi. Če ostane, reci »popravi formule in ponovno zgradi PDF«. |
-| PDF se ne ustvari | Potrebuješ Edge ali Chrome. Odpri `.html` datoteko ob PDF-ju in jo natisni v PDF ročno (Ctrl+P). |
-| Skill se ne sproži | Napiši izrecno: »uporabi skill mp3-to-pdf«. |
+| Težava                    | Rešitev                                                                                                           |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `python` ni prepoznan     | Python ni v PATH. Ponovno namesti in obkljukaj _Add to PATH_, ali uporabi `py`.                                   |
+| Prepis je zelo počasen    | Normalno na starejših računalnikih. Pusti, da teče v ozadju. Za hitrejši, a slabši prepis: »uporabi model small«. |
+| Veliko napačnih izrazov   | Claudu povej ime predmeta in nekaj ključnih izrazov ali mu daj prosojnice.                                        |
+| Formule v PDF-ju so rdeče | Claude to sam zazna in popravi. Če ostane, reci »popravi formule in ponovno zgradi PDF«.                          |
+| PDF se ne ustvari         | Potrebuješ Edge ali Chrome. Odpri `.html` datoteko ob PDF-ju in jo natisni v PDF ročno (Ctrl+P).                  |
+| Skill se ne sproži        | Napiši izrecno: »uporabi skill mp3-to-pdf«.                                                                       |
 
 ## Kaj je v mapi
 
