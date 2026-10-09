@@ -59,8 +59,6 @@ V aplikaciji Claude odpri **Nastavitve → Capabilities → Skills** (v novejši
 
 Če ti kdo pošlje `mp3-to-pdf.skill` kar v pogovoru s Claudom, je še lažje: na kartici datoteke klikni **Save skill**.
 
-Če aplikacija `.skill` ne sprejme, prenesi isto vsebino kot **[mp3-to-pdf.zip](https://github.com/<uporabnik>/mp3-to-pdf/releases/latest/download/mp3-to-pdf.zip)** in naloži tega (ne razširjaj ga).
-
 To je vse. Ob prvi uporabi Claude sam namesti, kar še manjka (Python knjižnice, KaTeX za formule), in prenese govorni model (~1,6 GB, samo enkrat).
 
 ### Posodobitev
@@ -136,7 +134,7 @@ Matematika1_05_Odvodi.pdf  ← to natisneš
 | Veliko napačnih izrazov   | Claudu povej ime predmeta in nekaj ključnih izrazov ali mu daj prosojnice.                                        |
 | Formule v PDF-ju so rdeče | Claude to sam zazna in popravi. Če ostane, reci »popravi formule in ponovno zgradi PDF«.                          |
 | PDF se ne ustvari         | Potrebuješ Edge ali Chrome. Odpri `.html` datoteko ob PDF-ju in jo natisni v PDF ročno (Ctrl+P).                  |
-| Nalaganje skilla ne uspe  | Uporabi `mp3-to-pdf.skill` ali `.zip` s povezave zgoraj (ne GitHubovega _Code → Download ZIP_) in ga ne razširjaj. |
+| Nalaganje skilla ne uspe  | Uporabi `mp3-to-pdf.skill` s povezave zgoraj (ne GitHubovega _Code → Download ZIP_). |
 | Skill se ne sproži        | Napiši izrecno: »uporabi skill mp3-to-pdf«.                                                                       |
 
 ## Kaj je v mapi
