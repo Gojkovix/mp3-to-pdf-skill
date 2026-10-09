@@ -1,5 +1,6 @@
-# Ob vsakem pushu na main zgradi mp3-to-pdf.zip (mapa mp3-to-pdf/ s SKILL.md) in ga objavi
-# kot release. Stalna povezava za prenos:
+# Ob vsakem pushu na main zgradi mp3-to-pdf.skill (+ enak .zip) z mapo mp3-to-pdf/ in SKILL.md
+# ter ju objavi kot release. Stalni povezavi za prenos:
+#   https://github.com/<uporabnik>/mp3-to-pdf/releases/latest/download/mp3-to-pdf.skill
 #   https://github.com/<uporabnik>/mp3-to-pdf/releases/latest/download/mp3-to-pdf.zip
 name: Release ZIP
 
@@ -17,20 +18,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build mp3-to-pdf.zip
+      - name: Build mp3-to-pdf.skill and .zip
         run: |
           mkdir -p dist/mp3-to-pdf
           rsync -a --exclude '.git' --exclude '.github' --exclude '.gitignore' \
                    --exclude 'dist' --exclude 'vendor' --exclude '__pycache__' ./ dist/mp3-to-pdf/
           test -f dist/mp3-to-pdf/SKILL.md
-          cd dist && zip -qr mp3-to-pdf.zip mp3-to-pdf && unzip -l mp3-to-pdf.zip
+          cd dist && zip -qr mp3-to-pdf.zip mp3-to-pdf && cp mp3-to-pdf.zip mp3-to-pdf.skill && unzip -l mp3-to-pdf.skill
 
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="v$(date -u +%Y.%m.%d)-${GITHUB_SHA::7}"
-          gh release create "$TAG" dist/mp3-to-pdf.zip \
+          gh release create "$TAG" dist/mp3-to-pdf.skill dist/mp3-to-pdf.zip \
             --title "mp3-to-pdf $TAG" \
-            --notes "Prenesi **mp3-to-pdf.zip** in ga naloži v Claude: Nastavitve → Skills → Upload skill. Navodila so v README." \
+            --notes "Prenesi **mp3-to-pdf.skill** in ga naloži v Claude: Nastavitve → Skills → Upload skill. Če aplikacija .skill ne sprejme, uporabi enak **mp3-to-pdf.zip**. Navodila so v README." \
             --latest
