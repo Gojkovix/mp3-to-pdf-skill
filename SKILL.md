@@ -71,6 +71,12 @@ End with a `summary` table (one row per section). The builder appends the formul
 
 For long lectures write section by section (append to the file) rather than one giant write.
 
+**Recordings over ~2 hours** (double lectures, 3 h blocks): the transcript is 25k+ words, too much to
+hold in mind at once. Read it in chunks of ~30 minutes; after each chunk append that part's
+notes to `notes.md` and keep a running list (topics, open exercises, exam hints, terms) so nothing
+from early chunks is lost. If the lecture covers clearly separate topics (often before/after
+the break), offer the student two PDFs (`…_del1.pdf`, `…_del2.pdf`) instead of one 50-page file.
+
 ## 5. Build and check
 
 ```bash
