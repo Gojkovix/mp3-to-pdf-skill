@@ -45,7 +45,7 @@ A plain transcript of a 90-minute lecture is about 13,000 words of repetition, "
 | -------------------------------------------------------- | ------------------------------ | ----------------------------------------------------------------------------------------- |
 | **Claude desktop app** (_Code_ tab) or **Claude Code**   | runs the skill                 | [claude.com/download](https://claude.com/download)                                        |
 | **Python 3.10+**                                         | transcription and PDF building | [python.org](https://www.python.org/downloads/) (tick _Add to PATH_ during installation) |
-| **Edge or Chrome**                                       | printing to PDF                | Edge comes with Windows                                                                   |
+| Edge, Chrome or Chromium _(optional)_                    | printing to PDF                | if none is installed, a Chromium is downloaded automatically                              |
 
 > **Note:** use the skill in the **Code** tab (or Claude Code in a terminal), because transcription runs on your computer. It does not work in a regular chat on claude.ai in the browser.
 
@@ -59,7 +59,9 @@ In the Claude app open **Settings → Capabilities → Skills** (in newer versio
 
 If someone sends you `mp3-to-pdf.skill` in a Claude conversation, it's even easier: click **Save skill** on the file card.
 
-That's it. On first use Claude installs whatever is missing (Python packages, KaTeX for formulas) and downloads the speech model (~1.6 GB, once).
+That's it. On first use Claude installs whatever is missing (Python packages, KaTeX for formulas, a browser for PDF printing if you have none) and downloads the speech model (~1.6 GB, once). No admin password needed.
+
+Tested on **Windows 11** and **Linux** (Ubuntu). **macOS** uses the same code paths but hasn't been tested yet; if you try it on a Mac, please report how it went.
 
 ### Updating
 
@@ -125,7 +127,7 @@ Calculus1_05_Derivatives.pdf ← print this
 | Transcription is very slow    | Normal on older computers. Let it run in the background. For faster but worse results: "use the small model". |
 | Many wrong terms              | Tell Claude the course name and a few key terms, or give it the slides.                                      |
 | Formulas in the PDF are red   | Claude detects and fixes this itself. If it stays, say "fix the formulas and rebuild the PDF".               |
-| No PDF is created             | You need Edge or Chrome. Open the `.html` file next to the PDF and print it to PDF yourself (Ctrl+P).        |
+| No PDF is created             | Ask Claude to "run the mp3-to-pdf setup" and follow what it reports. As a fallback, open the `.html` file next to the PDF and print it to PDF yourself (Ctrl+P). |
 | Uploading the skill fails     | Use `mp3-to-pdf.skill` from the link above (not GitHub's _Code → Download ZIP_).                             |
 | The skill doesn't start       | Say it explicitly: "use the mp3-to-pdf skill".                                                               |
 
@@ -136,7 +138,8 @@ mp3-to-pdf/
 ├── SKILL.md                    instructions for Claude (how to turn speech into notes)
 ├── README.md                   this file
 ├── scripts/
-│   ├── setup.py                installation and health check
+│   ├── setup.py                installation and health check (Windows, macOS, Linux)
+│   ├── _env.py                 shared helpers (private Python environment, browser lookup)
 │   ├── transcribe.py           recording → timestamped transcript (faster-whisper, local)
 │   └── build.py                notes → PDF (KaTeX formulas, Edge/Chrome)
 ├── references/

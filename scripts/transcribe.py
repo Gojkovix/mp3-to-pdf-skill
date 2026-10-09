@@ -35,6 +35,9 @@ def decode(path, sr=16000):
     return np.concatenate(chunks).astype(np.float32) / 32768.0
 
 def main():
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    from _env import ensure_modules
+    ensure_modules(["faster_whisper", "av", "numpy"])
     ap = argparse.ArgumentParser()
     ap.add_argument("audio")
     ap.add_argument("outdir")

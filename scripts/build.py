@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """notes.md -> notes.html -> notes.pdf  (A4, print-ready, KaTeX math)
 
-usage:  python build.py work/notes.md out/Predmet_01_Naslov.pdf [--html-only]
+usage:  python build.py work/notes.md out/Course_01_Topic.pdf [--html-only]
 
-PDF is printed by headless Edge or Chrome (whichever is installed); no extra
-Python packages besides markdown-it-py + mdit-py-plugins. Run setup.py once.
+PDF is printed by a headless Chromium-based browser (Edge, Chrome, Chromium, Brave, or the
+Playwright Chromium that setup.py downloads). Python needs markdown-it-py + mdit-py-plugins.
+Run setup.py once.
 
 Frontmatter keys (title required):
   course, chapter, title, lecturer, date, duration, institution, lang (sl|en),
@@ -14,6 +15,8 @@ import sys, re, pathlib, html, json, shutil, subprocess, tempfile, os
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent
+sys.path.insert(0, str(HERE))
+from _env import KATEX, find_browser, browser_flags, browser_env, ensure_modules
 
 I18N = {
     "sl": dict(def_="Definicija", formula="Formula", thm="Izrek", rule="Pravilo", ex="Zgled", task="Naloga",
@@ -39,26 +42,8 @@ def parse_frontmatter(text):
         text = text[m.end():]
     return meta, text
 
-def find_browser():
-    cands = [
-        os.environ.get("PDF_BROWSER", ""),
-        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-        r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
-        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-        os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
-        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-        "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
-    ]
-    for c in cands:
-        if c and pathlib.Path(c).exists():
-            return c
-    for n in ("msedge", "google-chrome", "chromium", "chromium-browser", "chrome"):
-        p = shutil.which(n)
-        if p:
-            return p
-    sys.exit("No Edge/Chrome/Chromium found for PDF printing (set PDF_BROWSER=path).")
-
 def main():
+    ensure_modules(["markdown_it", "mdit_py_plugins"])
     src = pathlib.Path(sys.argv[1]).resolve()
     out_pdf = pathlib.Path(sys.argv[2]).resolve()
     html_only = "--html-only" in sys.argv
@@ -134,7 +119,7 @@ def main():
     footer_left = f'{meta.get("course", "")} · {meta.get("title", "")}'.strip(" ·").replace('"', "'")
     css += f'\n@page {{ @bottom-left {{ content: "{footer_left}"; }} }}\n'
 
-    kdir = pathlib.Path.home() / ".cache" / "mp3-to-pdf" / "node_modules" / "katex" / "dist"
+    kdir = KATEX / "dist"
     if kdir.exists():
         kcss = (kdir / "katex.min.css").read_text(encoding="utf-8").replace("url(fonts/", f"url({kdir.as_uri()}/fonts/")
         katex_tags = f"<style>{kcss}</style>", f"<script>{(kdir / 'katex.min.js').read_text(encoding='utf-8')}</script>"
@@ -202,14 +187,16 @@ document.body.dataset.ready = '1';
         return
 
     browser = find_browser()
+    if not browser:
+        sys.exit("No Chrome/Edge/Chromium found for PDF printing – run setup.py (or set PDF_BROWSER).")
     with tempfile.TemporaryDirectory() as prof:
-        cmd = [browser, "--headless=new", "--disable-gpu", "--no-first-run", f"--user-data-dir={prof}",
+        cmd = [browser, *browser_flags(), f"--user-data-dir={prof}",
                "--no-pdf-header-footer", "--virtual-time-budget=20000", "--run-all-compositor-stages-before-draw",
                f"--print-to-pdf={out_pdf}", out_html.as_uri()]
-        subprocess.run(cmd, check=False, timeout=180, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        dom = subprocess.run([browser, "--headless=new", "--disable-gpu", f"--user-data-dir={prof}",
+        subprocess.run(cmd, check=False, timeout=180, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=browser_env())
+        dom = subprocess.run([browser, *browser_flags(), f"--user-data-dir={prof}",
                               "--virtual-time-budget=20000", "--dump-dom", out_html.as_uri()],
-                             capture_output=True, timeout=180).stdout.decode("utf-8", "replace")
+                             capture_output=True, timeout=180, env=browser_env()).stdout.decode("utf-8", "replace")
     if not out_pdf.exists():
         sys.exit("PDF printing failed – open the .html in a browser and print to PDF manually.")
     print("wrote", out_pdf)

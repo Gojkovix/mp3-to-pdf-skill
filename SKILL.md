@@ -21,7 +21,11 @@ cloud "summaries" lose the formulas. The value here is the *reconstruction* — 
 python <skill>/scripts/setup.py
 ```
 
-Idempotent; installs missing pip packages and KaTeX, confirms a browser for PDF printing.
+Idempotent and fast once everything is installed; works on Windows, macOS and Linux without admin
+rights. It installs missing Python packages (into a private venv in `~/.cache/mp3-to-pdf` when the
+system Python refuses pip installs; the other scripts then switch to it automatically), downloads
+KaTeX, and finds a Chromium-based browser for PDF printing, downloading one if none is installed.
+If it ends with `setup INCOMPLETE`, show the student the `FAIL` lines; they say exactly what to do.
 
 Then collect, without a long interview — ask only what you cannot infer, in one message:
 - **Course name and lecture topic/number** (often in the filename or folder; otherwise the lecturer says
@@ -109,7 +113,8 @@ Keep `transcript.txt` beside it — mention it exists in case they want to searc
 
 ## Files
 
-- `scripts/setup.py` — dependency check/installer (pip: faster-whisper, markdown-it-py, mdit-py-plugins; npm: KaTeX)
+- `scripts/setup.py` — dependency check/installer (Python packages, KaTeX, browser); no admin rights needed
+- `scripts/_env.py` — shared helpers: private venv switching, browser lookup per OS
 - `scripts/transcribe.py` — audio → timestamped transcript (faster-whisper, offline, VAD, progress/ETA)
 - `scripts/build.py` — notes.md → HTML → PDF via headless Edge/Chrome; formula sheet; QA report
 - `theme/theme.css` — the design (A4, boxes, timestamp chips); change looks here only
