@@ -1,7 +1,7 @@
-# Ob vsakem pushu na main zgradi mp3-to-pdf.skill (+ enak .zip) z mapo mp3-to-pdf/ in SKILL.md
-# ter ju objavi kot release. Stalni povezavi za prenos:
-#   https://github.com/<uporabnik>/mp3-to-pdf/releases/latest/download/mp3-to-pdf.skill
-#   https://github.com/<uporabnik>/mp3-to-pdf/releases/latest/download/mp3-to-pdf.zip
+# On every push to main, build mp3-to-pdf.skill (+ an identical .zip) containing the mp3-to-pdf/
+# folder with SKILL.md, and publish them as a release. Permanent download links:
+#   https://github.com/<username>/mp3-to-pdf/releases/latest/download/mp3-to-pdf.skill
+#   https://github.com/<username>/mp3-to-pdf/releases/latest/download/mp3-to-pdf.zip
 name: Release ZIP
 
 on:
@@ -33,5 +33,5 @@ jobs:
           TAG="v$(date -u +%Y.%m.%d)-${GITHUB_SHA::7}"
           gh release create "$TAG" dist/mp3-to-pdf.skill dist/mp3-to-pdf.zip \
             --title "mp3-to-pdf $TAG" \
-            --notes "Prenesi **mp3-to-pdf.skill** in ga naloži v Claude: Nastavitve → Skills → Upload skill. Če aplikacija .skill ne sprejme, uporabi enak **mp3-to-pdf.zip**. Navodila so v README." \
+            --notes "Download **mp3-to-pdf.skill** and add it to Claude: Settings → Skills → Upload skill. If your app does not accept .skill, use the identical **mp3-to-pdf.zip**. Full instructions in the README." \
             --latest

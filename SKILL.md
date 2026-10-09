@@ -3,7 +3,7 @@ name: mp3-to-pdf
 description: Turn a recorded lecture (MP3, M4A, WAV, voice memo, video of a lecture) into a print-ready PDF study workbook — accurate local transcription with Whisper, then properly reconstructed formulas (LaTeX), definitions, worked examples, solved exercises, exam hints, timestamps back into the recording, and a formula sheet. Use this whenever the user gives an audio/video recording of a lecture, class, vaje, seminar or tutorial, or asks to "transcribe", "prepiši", "naredi zapiske iz posnetka", "posnetek predavanja v PDF", "iz mp3 naredi PDF", "da se lažje naučim" — even if they only drop an .mp3 file with no explanation. Also use when they give a recording together with slides or board photos.
 ---
 
-# Predavanje (posnetek) → PDF za učenje
+# Lecture recording → PDF to learn from
 
 The student gives a recording; they get back a PDF they can learn from alone: structured notes in
 the lecturer's terminology, every formula written as real math, every example and exercise worked out,
@@ -75,12 +75,12 @@ For long lectures write section by section (append to the file) rather than one 
 hold in mind at once. Read it in chunks of ~30 minutes; after each chunk append that part's
 notes to `notes.md` and keep a running list (topics, open exercises, exam hints, terms) so nothing
 from early chunks is lost. If the lecture covers clearly separate topics (often before/after
-the break), offer the student two PDFs (`…_del1.pdf`, `…_del2.pdf`) instead of one 50-page file.
+the break), offer the student two PDFs (`…_part1.pdf`, `…_part2.pdf`) instead of one 50-page file.
 
 ## 5. Build and check
 
 ```bash
-python <skill>/scripts/build.py "<work>/notes.md" "<out>/<Predmet>_<nn>_<Tema>.pdf"
+python <skill>/scripts/build.py "<work>/notes.md" "<out>/<Course>_<nn>_<Topic>.pdf"
 ```
 
 The build prints a QA line: math errors (with the offending LaTeX), unparsed `:::` boxes, raw `$…$`.
@@ -115,5 +115,5 @@ Keep `transcript.txt` beside it — mention it exists in case they want to searc
 - `theme/theme.css` — the design (A4, boxes, timestamp chips); change looks here only
 - `references/writing-rules.md` — how to turn speech into notes; formula reconstruction table; box choice
 - `references/content-format.md` — notes.md syntax: frontmatter, boxes, math, exercises
-- `examples/primer-notes.md` + `examples/primer.pdf` — a small complete example of the format and look
+- `examples/example-notes.md` + `examples/example.pdf` — a small complete example of the format and look
 - `README.md` — for humans (installation, usage); not needed while running the skill

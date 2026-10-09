@@ -7,17 +7,17 @@ CommonMark + pipe tables + `$math$` (KaTeX) + `:::` boxes + `[mm:ss]` timestamps
 
 ```yaml
 ---
-course: Matematika 1            # cover + footer
+course: Calculus 1              # cover + footer
 chapter: 3                      # big number on the cover ("" for none)
-title: Odvod in njegova uporaba
-lecturer: prof. dr. Janez Novak # only if said in the recording or given by the student
+title: Derivatives and their applications
+lecturer: Prof. Jane Smith      # only if said in the recording or given by the student
 date: 2026-10-08                # lecture date if known
 duration: "1:32:10"             # recording length (from transcript.json)
-institution: FRI UL
-lang: sl                        # sl | en  (box labels)
+institution: University of Ljubljana
+lang: en                        # sl | en  (box labels; use the lecture's language)
 accent: "#1d5c8a"               # one colour per course; keep it across lectures
 solutions: inline               # inline | end (appendix)
-formula_sheet: yes              # yes = appendix "Formule na enem mestu" (all formula/rule/thm boxes)
+formula_sheet: yes              # yes = appendix "Formula sheet" / "Formule na enem mestu" (all formula/rule/thm boxes)
 ---
 ```
 
@@ -25,31 +25,31 @@ formula_sheet: yes              # yes = appendix "Formule na enem mestu" (all fo
 
 `#` = numbered section (new page), `##` = subsection. Both go into the table of contents.
 Put the timestamp where the topic starts in the recording at the end of the heading:
-`## Verižno pravilo [34:12]` — it renders as a small grey chip, not in the TOC.
+`## Chain rule [34:12]` — it renders as a small grey chip, not in the TOC.
 
 ## Boxes
 
 ```
-::: formula Verižno pravilo
+::: formula Chain rule
 $$ (f\circ g)'(x) = f'(g(x))\cdot g'(x) $$
 :::
 ```
 
-| Fence | sl label | Use for | Numbered |
+| Fence | Label (en / sl) | Use for | Numbered |
 |---|---|---|---|
-| `def` | Definicija | definitions as the lecturer stated them | yes |
-| `formula` | Formula | a formula/identity to memorise — ends up on the formula sheet | yes |
-| `rule` | Pravilo | procedural rule, algorithm, recipe ("najprej…, nato…") — formula sheet | yes |
-| `thm` | Izrek | named theorem/law with conditions — formula sheet | yes |
-| `ex` | Zgled | an example the lecturer worked through | yes |
-| `task` | Naloga | exercise for the student (homework, "poskusite sami", typical exam task) | yes |
-| `sol` | Rešitev | solution of the task directly above | no |
-| `idea` | Ideja | intuition / the "why" | no |
-| `warn` | Pozor | pitfalls, typical mistakes the lecturer warned about | no |
-| `exam` | Za izpit | anything the lecturer said about the exam, tests, what to know | no |
-| `unclear` | Nejasno v posnetku | a passage you could not reconstruct reliably — with timestamp | no |
-| `proof` | Dokaz | proof / derivation | no |
-| `summary` | Povzetek | end-of-lecture summary table | no |
+| `def` | Definition / Definicija | definitions as the lecturer stated them | yes |
+| `formula` | Formula / Formula | a formula/identity to memorise — ends up on the formula sheet | yes |
+| `rule` | Rule / Pravilo | procedural rule, algorithm, recipe ("first…, then…") — formula sheet | yes |
+| `thm` | Theorem / Izrek | named theorem/law with conditions — formula sheet | yes |
+| `ex` | Example / Zgled | an example the lecturer worked through | yes |
+| `task` | Exercise / Naloga | exercise for the student (homework, "try it yourself", typical exam task) | yes |
+| `sol` | Solution / Rešitev | solution of the task directly above | no |
+| `idea` | Idea / Ideja | intuition / the "why" | no |
+| `warn` | Watch out / Pozor | pitfalls, typical mistakes the lecturer warned about | no |
+| `exam` | For the exam / Za izpit | anything the lecturer said about the exam, tests, what to know | no |
+| `unclear` | Unclear in recording / Nejasno v posnetku | a passage you could not reconstruct reliably — with timestamp | no |
+| `proof` | Proof / Dokaz | proof / derivation | no |
+| `summary` | Summary / Povzetek | end-of-lecture summary table | no |
 
 Title after the fence name is optional and may contain `$math$`. Boxes cannot nest.
 A box never splits across pages, so keep one box under ~⅔ of a page (`sol` may split).
@@ -57,14 +57,14 @@ A box never splits across pages, so keep one box under ~⅔ of a page (`sol` may
 ## Exercises
 
 ```
-::: task Odvod sestavljene funkcije [52:40]
-Odvajaj $h(x) = \sin(x^2+1)$.
+::: task Derivative of a composite function [52:40]
+Differentiate $h(x) = \sin(x^2+1)$.
 :::
 @@space 4
 ::: sol
-Zunanja $f(u)=\sin u$, notranja $g(x)=x^2+1$. Po verižnem pravilu …
+Outer $f(u)=\sin u$, inner $g(x)=x^2+1$. By the chain rule …
 
-**Rezultat:** $h'(x) = 2x\cos(x^2+1)$
+**Result:** $h'(x) = 2x\cos(x^2+1)$
 :::
 ```
 
@@ -73,7 +73,7 @@ Zunanja $f(u)=\sin u$, notranja $g(x)=x^2+1$. Po verižnem pravilu …
 ## Math
 
 Inline `$…$`, display `$$ … $$` on its own lines. KaTeX syntax. Multi-step derivations:
-`\begin{aligned} … &= … && \text{(razlog)} \\ … \end{aligned}`. Slovenian decimal comma: `0{,}25`.
+`\begin{aligned} … &= … && \text{(reason)} \\ … \end{aligned}`. Slovenian decimal comma: `0{,}25`.
 Units: `9{,}81\,\mathrm{m/s^2}`. Never leave a spoken formula as words if it can be written as math.
 
 ## Other
