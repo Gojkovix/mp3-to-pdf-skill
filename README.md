@@ -1,10 +1,10 @@
-# 🎓 mp3-to-pdf
+# mp3-to-pdf
 
 **Posnetek predavanja → PDF, iz katerega se res lahko naučiš.**
 
 Claudu pošlješ MP3 s predavanja, nazaj dobiš urejen PDF za tiskanje: formule zapisane kot prava matematika, definicije v okvirjih, do konca izpeljani zgledi, rešene naloge, označeno vse, kar je profesor rekel o izpitu, in na koncu list z vsemi formulami. Ob vsakem poglavju je časovna oznaka, da takoj najdeš pravo mesto v posnetku.
 
-> 📄 **Primer rezultata:** [`examples/primer.pdf`](examples/primer.pdf)
+> **Primer rezultata:** [`examples/primer.pdf`](examples/primer.pdf)
 
 ---
 
@@ -32,8 +32,8 @@ Navaden prepis 90-minutnega predavanja ima okoli 13.000 besed ponavljanja, »ne?
 
 ## Zasebnost in cena
 
-- 🔒 **Prepis teče lokalno na tvojem računalniku** (Whisper). Posnetek ne gre nikamor na splet.
-- 💸 Prepis je zastonj. Zapiske nato napiše Claude v tvojem pogovoru, zato porabi nekaj tvoje Claude kvote.
+- **Prepis teče lokalno na tvojem računalniku** (Whisper). Posnetek ne gre nikamor na splet.
+- Prepis je zastonj. Zapiske nato napiše Claude v tvojem pogovoru, zato porabi nekaj tvoje Claude kvote.
 
 ---
 
@@ -48,7 +48,7 @@ Navaden prepis 90-minutnega predavanja ima okoli 13.000 besed ponavljanja, »ne?
 | **Edge ali Chrome**                                                                       | tiskanje v PDF                  | na Windows je Edge že nameščen                                                           |
 | Node.js _(neobvezno)_                                                                     | formule delujejo brez interneta | [nodejs.org](https://nodejs.org)                                                         |
 
-> ⚠️ Skill potrebuje Claude **Code** (namizna aplikacija ali terminal), ker poganja Python na tvojem računalniku. Na navadnem claude.ai v brskalniku ne deluje.
+> **Pozor:** skill potrebuje Claude **Code** (namizna aplikacija ali terminal), ker poganja Python na tvojem računalniku. Na navadnem claude.ai v brskalniku ne deluje.
 
 ### 1. Prenesi skill
 
@@ -103,9 +103,9 @@ Ali še krajše: samo povleci MP3 v pogovor. Skill se sproži sam.
 
 **Za še boljši rezultat** dodaj zraven:
 
-- 📑 **prosojnice** (PDF): formule in izrazi so potem natančni,
-- 📸 **fotke table**: rešijo mesta, kjer je profesor samo pokazal »tole tukaj«,
-- 🏷️ nekaj **ključnih izrazov** predmeta, da jih prepis pravilno zapiše.
+- **prosojnice** (PDF): formule in izrazi so potem natančni,
+- **fotke table**: rešijo mesta, kjer je profesor samo pokazal »tole tukaj«,
+- nekaj **ključnih izrazov** predmeta, da jih prepis pravilno zapiše.
 
 ### Koliko traja?
 
@@ -113,6 +113,7 @@ Ali še krajše: samo povleci MP3 v pogovor. Skill se sproži sam.
 | -------- | ----------------------- | ------------- |
 | 45 min   | ~8–15 min               | nekaj minut   |
 | 90 min   | ~15–30 min              | nekaj minut   |
+| 180 min  | ~40–60 min              | nekoliko dlje |
 
 Prepis teče v ozadju, Claude te sproti obvešča o napredku.
 
@@ -132,7 +133,7 @@ mat1_predavanje5_work/
     transcript.txt         ← celoten prepis s časi (uporaben za iskanje)
     notes.md               ← vir zapiskov (lahko popraviš in ponovno zgradiš)
     low_confidence.txt     ← mesta, kjer je bil prepis negotov
-Matematika1_05_Odvodi.pdf  ← 🎯 to natisneš
+Matematika1_05_Odvodi.pdf  ← to natisneš
 ```
 
 ---
